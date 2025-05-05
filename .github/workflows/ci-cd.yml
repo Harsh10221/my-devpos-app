@@ -8,19 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code 
       uses: actions/checkout@v2
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
+
     - name: Build Docker image
       run: docker build -t my-web-app .
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
     - name: Push image to Docker Hub
       run: |
-        docker tag my-web-app Harsh10221/my-web-app:latest
-        docker push Harsh10221/my-web-app:latest
+        docker tag my-web-app harsh0031/my-web-app:latest
+        docker push harsh0031/my-web-app:latest
